@@ -52,14 +52,64 @@ class _CounterState extends State<Counter> {
   }
 }
 
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String? _selectedPage;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Practice',
+        home: Navigator(
+          pages: [
+            MaterialPage(
+                key: ValueKey('ListPage'),
+                child: MenuScreen(
+                  pageNames: ["aaa", "bbb"],
+                  onTapped: (page) {
+                    setState(() {
+                      _selectedPage = page;
+                    });
+                  },
+                )),
+            if (_selectedPage != null)
+              MaterialPage(
+                  key: ValueKey(_selectedPage),
+                  child: Scaffold(appBar: AppBar(), body: Text(_selectedPage!)))
+          ],
+          onPopPage: (route, result) {
+            if (!route.didPop(result)) return false;
+            setState(() {
+              _selectedPage = null;
+            });
+            return true;
+          },
+        ));
+  }
+}
+
+class MenuScreen extends StatelessWidget {
+  final List<String> pageNames;
+  final ValueChanged<String> onTapped;
+  MenuScreen({required this.pageNames, required this.onTapped});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(),
+        body: ListView(
+          children: pageNames
+              .map((name) =>
+                  ListTile(title: Text(name), onTap: () => onTapped(name)))
+              .toList(),
+        ));
+  }
+}
+
 void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Counter(),
-        ),
-      ),
-    ),
-  );
+  runApp(MyApp());
 }

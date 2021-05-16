@@ -2,27 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/navigator/route_config.dart';
 import 'package:flutter_practice/navigator/router_delegate.dart';
 
-class MenuScreen extends StatelessWidget {
+class PersonListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Practice'),
+          title: Text('Persons'),
         ),
         body: ListView(
           children: [
             ListTile(
-                title: Text("Counter"),
-                onTap: () =>
-                    AppRouterDelegate.instance.setNewRoutePath(CounterRoute())),
-            ListTile(
-                title: Text("Layout Demo"),
+                title: Text("Alice"),
                 onTap: () => AppRouterDelegate.instance
-                    .setNewRoutePath(LayoutDemoRoute())),
+                    .setNewRoutePath(PersonDetailRoute("alice_id"))),
             ListTile(
-                title: Text("Person List"),
+                title: Text("Bob"),
                 onTap: () => AppRouterDelegate.instance
-                    .setNewRoutePath(PersonListRoute()))
+                    .setNewRoutePath(PersonDetailRoute("bob_id")))
           ],
         ));
   }

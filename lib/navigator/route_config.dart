@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/counter.dart';
-import 'package:flutter_practice/layout-tutorial.dart';
+import 'package:flutter_practice/screen/counter.dart';
+import 'package:flutter_practice/screen/layout-tutorial.dart';
 import 'package:flutter_practice/screen/menu.dart';
+import 'package:flutter_practice/screen/person_detail.dart';
+import 'package:flutter_practice/screen/person_list.dart';
 
 abstract class RouteConfig {
   String location();
@@ -40,6 +42,32 @@ class LayoutDemoRoute extends RouteConfig {
 
   @override
   Widget buildScreen() => LayoutPractice();
+}
+
+class PersonListRoute extends RouteConfig {
+  @override
+  String location() => '/person';
+
+  @override
+  RouteConfig? parent() => HomeRoute();
+
+  @override
+  Widget buildScreen() => PersonListScreen();
+}
+
+class PersonDetailRoute extends RouteConfig {
+  final String id;
+
+  PersonDetailRoute(this.id);
+
+  @override
+  String location() => '/person/$id';
+
+  @override
+  RouteConfig? parent() => PersonListRoute();
+
+  @override
+  Widget buildScreen() => PersonDetailScreen(id: id);
 }
 
 class NotFoundRoute extends RouteConfig {

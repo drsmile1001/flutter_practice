@@ -22,7 +22,11 @@ class MenuScreen extends StatelessWidget {
             ListTile(
                 title: Text("Person List"),
                 onTap: () => AppRouterDelegate.instance
-                    .setNewRoutePath(PersonListRoute()))
+                    .setNewRoutePath(PersonListRoute())),
+            ListTile(
+                title: Text("Share State"),
+                onTap: () => AppRouterDelegate.instance
+                    .setNewRoutePath(ShareStateRoute()))
           ],
         ));
   }

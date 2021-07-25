@@ -4,6 +4,7 @@ import 'package:flutter_practice/screen/layout-tutorial.dart';
 import 'package:flutter_practice/screen/menu.dart';
 import 'package:flutter_practice/screen/person_detail.dart';
 import 'package:flutter_practice/screen/person_list.dart';
+import 'package:flutter_practice/screen/share_state.dart';
 
 abstract class RouteConfig {
   String location();
@@ -68,6 +69,17 @@ class PersonDetailRoute extends RouteConfig {
 
   @override
   Widget buildScreen() => PersonDetailScreen(id: id);
+}
+
+class ShareStateRoute extends RouteConfig {
+  @override
+  String location() => '/share-state';
+
+  @override
+  RouteConfig? parent() => HomeRoute();
+
+  @override
+  Widget buildScreen() => ShareStateScreen();
 }
 
 class NotFoundRoute extends RouteConfig {

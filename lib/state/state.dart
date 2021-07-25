@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
-
-class IWidget extends InheritedWidget {
-  final String value;
-  IWidget({required this.value, required Widget child}) : super(child: child);
-
-  static IWidget? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<IWidget>();
-  }
-
-  @override
-  bool updateShouldNotify(IWidget oldWidget) {
-    return oldWidget.value != value;
-  }
-}
+import 'package:provider/provider.dart';
 
 class ValueWidget extends StatelessWidget {
   final Widget? child;
@@ -28,10 +15,7 @@ class ValueWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (IWidget.of(context) != null)
-              Text('value:${IWidget.of(context)!.value}')
-            else
-              Text('value:null'),
+            Text('value:${Provider.of<String>(context)}'),
             if (child != null) child!
           ],
         ),

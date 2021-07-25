@@ -8,17 +8,18 @@ class ShareStateScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('Share State'),
         ),
-        body: IWidget(
-            value: 'AAA',
-            child: ValueWidget(
-              color: Colors.grey,
+        body: ValueWidget(
+          color: Colors.grey,
+          child: ValueWidget(
+            color: Colors.orange,
+            child: IWidget(
+              value: "BBB",
               child: ValueWidget(
-                color: Colors.orange,
-                child: ValueWidget(
-                  color: Colors.blue,
-                  child: ValueWidget(color: Colors.green),
-                ),
+                color: Colors.blue,
+                child: ValueWidget(color: Colors.green),
               ),
-            )));
+            ),
+          ),
+        ));
   }
 }
